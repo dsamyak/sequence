@@ -4,42 +4,42 @@ import { getStoryNarration } from '../utils/narration';
 
 const STORY_SLIDES = [
   {
-    image: '/src/assets/portraits/john.png',
+    image: '/portraits/john.png',
     title: "At the Train Station",
     text: "John is waiting at the train station. The display shows trains arriving at minutes 5, 10, 15, 20. Can you see the pattern? The trains come every 5 minutes!",
     highlight: '"Plus 5 each time"',
     mascotText: "That's an ascending pattern! 🚂",
   },
   {
-    image: '/src/assets/portraits/sarah.png',
+    image: '/portraits/sarah.png',
     title: "At the Market",
     text: "Sarah visits the market. Apples cost 100, 200, 300, 400 cents. The price goes up by 100 each time. That is a number pattern!",
     highlight: '"100, 200, 300, 400..."',
     mascotText: "Counting by hundreds! 🍎",
   },
   {
-    image: '/src/assets/portraits/mike.png',
+    image: '/portraits/mike.png',
     title: "Climbing Stairs",
     text: "Mike counts the steps on a staircase: 2, 4, 6, 8, 10. Each step adds 2 more. When we add the same number each time, that is an ascending pattern.",
     highlight: '"2, 4, 6, 8, 10"',
     mascotText: "Skip counting by twos! 👟",
   },
   {
-    image: '/src/assets/portraits/aisha.png',
+    image: '/portraits/aisha.png',
     title: "Sharing Stickers",
     text: "Aisha has 50 stickers. She gives away 10 each day: 50, 40, 30, 20, 10. When we subtract the same number each time, that is a descending pattern.",
     highlight: '"Minus 10 each time"',
     mascotText: "Going backwards! ⭐",
   },
   {
-    image: '/src/assets/portraits/luca.png',
+    image: '/portraits/luca.png',
     title: "House Numbers",
     text: "Luca looks at house numbers: 1000, 2000, 3000, 4000. Wow! Counting by thousands! The rule is plus 1000.",
     highlight: '"1000, 2000, 3000..."',
     mascotText: "Big numbers are fun! 🏠",
   },
   {
-    image: '/src/assets/hero.png',
+    image: '/hero.png',
     title: "Your Turn!",
     text: "Now you know what number patterns are! Patterns are everywhere, and you can find them! Let us practice making patterns ourselves.",
     highlight: '"Time to build sequences!"',

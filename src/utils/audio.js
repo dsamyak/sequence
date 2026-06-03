@@ -53,9 +53,16 @@ function playNextSegment() {
   }
 
   currentAudio = new Audio(url);
-  currentAudio.play().catch(e => console.error("Error playing audio:", e));
-  
-  preloadNext();
+  const playPromise = currentAudio.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(e => {
+      if (e.name === 'NotAllowedError' || e.name === 'AbortError') {
+        // Expected browser behavior (autoplay blocked or audio cancelled), safely ignore
+      } else {
+        console.error("Error playing audio:", e);
+      }
+    });
+  }
 
   currentAudio.onended = () => {
     if (!isCancelled) {

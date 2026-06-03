@@ -112,7 +112,7 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 .journey-step-label { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
 .journey-step.active .journey-step-label { color: var(--gold); }
 .journey-step.completed .journey-step-label { color: var(--green-light); }
-.journey-connector { width: 20px; height: 2px; background: rgba(255,255,255,0.15); margin: 0 4px; }
+.journey-connector { width: 20px; height: 2px; background: rgba(255,255,255,0.15); margin: 0 4px; transition: var(--transition); }
 .journey-connector.filled { background: var(--green); }
 
 /* ===== GLASS CARD ===== */
@@ -456,10 +456,54 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .journey-bar { padding: 8px 16px; border-radius: 0 0 var(--radius-md) var(--radius-md); width: 90%; justify-content: center; }
+  .journey-step-label { display: none !important; } /* Hide labels on tablet/mobile to save space */
+  .journey-connector { width: 12px; }
+  .wonder-screen, .story-screen, .simulate-screen, .play-screen, .reflect-screen { padding: 80px 16px 40px; }
+  .story-image { height: 200px; }
+  .sim-card, .story-card, .wonder-card, .play-hud, .question-card { width: 100%; max-width: 100%; }
+}
+
 @media (max-width: 600px) {
-  .glass-card { padding: 24px; }
+  .glass-card { padding: 24px 16px; }
+  .btn { padding: 12px 24px; font-size: 1rem; min-width: 120px; }
+  .btn-lg { padding: 16px 32px; font-size: 1.1rem; }
   .options-grid { grid-template-columns: 1fr; }
-  .reflect-summary { grid-template-columns: repeat(2,1fr); }
-  .worlds-grid { grid-template-columns: repeat(2,1fr); }
-  .number-node-circle { width: 48px; height: 48px; font-size: 1rem; }
+  .reflect-summary { grid-template-columns: 1fr; gap: 8px; }
+  .worlds-grid { grid-template-columns: 1fr 1fr; }
+  
+  /* Number line specific */
+  .number-line { min-width: 100%; padding: 0 10px; }
+  .number-line-track { left: 10px; right: 10px; }
+  .number-node-circle { width: 44px; height: 44px; font-size: 1rem; border-width: 2px; }
+  .number-node-circle.missing { font-size: 1.3rem; }
+  .jump-arrow { font-size: 0.65rem; top: -18px; }
+  
+  /* Number grid */
+  .grid-cell { width: 56px; height: 56px; font-size: 1rem; }
+  .grid-cell.missing { font-size: 1.5rem; }
+  
+  /* Inputs */
+  .answer-input { width: 100px; height: 50px; font-size: 1.3rem; }
+  
+  /* Fonts & Headings */
+  .intro-title { font-size: clamp(2rem, 8vw, 2.5rem); }
+  .station-header h2 { font-size: 1.2rem; }
+  .world-icon { font-size: 2rem; }
+  .stars-display { font-size: 2.5rem; letter-spacing: 4px; }
+  .reflect-title { font-size: 1.6rem; }
+  
+  /* Adjust mascot bubble */
+  .mascot-bubble { flex-direction: column; text-align: center; gap: 8px; }
+  
+  /* Audio Toggle & Home btn */
+  .home-btn { top: 12px; left: 12px; padding: 6px 12px; font-size: 0.8rem; }
+  .audio-toggle-btn { top: 12px; right: 12px; width: 36px; height: 36px; font-size: 1rem; }
+}
+
+@media (max-width: 360px) {
+  .worlds-grid { grid-template-columns: 1fr; }
+  .number-node-circle { width: 36px; height: 36px; font-size: 0.85rem; }
+  .grid-cell { width: 44px; height: 44px; }
 }
