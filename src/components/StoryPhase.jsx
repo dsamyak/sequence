@@ -90,7 +90,7 @@ export default function StoryPhase({ onComplete, audioEnabled }) {
       </div>
 
       <div className="story-card glass-card" style={{ padding: 0, overflow: 'hidden' }}>
-        <img src={slide.image} alt={slide.title} className="story-image" style={{ objectFit: 'contain', backgroundColor: '#1a1a5e' }} />
+        <img src={slide.image} alt={slide.title} className="story-image" />
         
         <div className="story-content">
           <h2 className="story-title">{slide.title}</h2>
