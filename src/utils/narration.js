@@ -47,6 +47,12 @@ export function simulateStation2Intro() {
 export function simulateStation3Intro() {
   return [instruct("Now fill in the missing number. Use the number pad to type your answer!")];
 }
+export function simulateStation4Intro() {
+  return [instruct("Is this pattern going up or down? Choose ascending or descending!")];
+}
+export function simulateStation5Intro() {
+  return [instruct("Let's build a pattern! Follow the rule and pick the next numbers.")];
+}
 
 export function playWorldIntro(worldName) {
   return [cheer(`Welcome to ${worldName}!`), instruct("Answer the questions. You can do it!")];

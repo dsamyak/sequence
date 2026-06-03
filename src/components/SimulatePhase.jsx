@@ -1,11 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { narrate, sounds, celebrate, cheer } from '../utils/audio';
-import { simulateStation1Intro, simulateStation2Intro, simulateStation3Intro } from '../utils/narration';
+import { 
+  simulateStation1Intro, 
+  simulateStation2Intro, 
+  simulateStation3Intro,
+  simulateStation4Intro,
+  simulateStation5Intro
+} from '../utils/narration';
 
 const STATIONS = [
   { id: 0, title: 'Number Line', subtitle: 'Find the Rule', icon: '📏' },
   { id: 1, title: 'Spot Pattern', subtitle: 'Which is correct?', icon: '👁️' },
   { id: 2, title: 'Missing Number', subtitle: 'Type it in', icon: '📝' },
+  { id: 3, title: 'Up or Down?', subtitle: 'Direction', icon: '🎢' },
+  { id: 4, title: 'Build It', subtitle: 'Make a pattern', icon: '🧱' },
 ];
 
 function Station1({ audioEnabled, onNext }) {
@@ -140,7 +148,7 @@ function Station2({ audioEnabled, onNext }) {
 
       {done && (
         <button className="btn btn-primary" onClick={onNext} style={{ marginTop: 32, animation: 'fadeSlideUp 0.5s ease' }}>
-          Final Station ➔
+          Next Station ➔
         </button>
       )}
     </div>
@@ -172,7 +180,6 @@ function Station3({ audioEnabled, onNext }) {
       if (audioEnabled) {
         narRef.current = narrate([
           celebrate("Amazing! You got it right!"),
-          cheer("You are ready to play!")
         ], true);
       }
     } else {
@@ -215,6 +222,150 @@ function Station3({ audioEnabled, onNext }) {
       )}
 
       {done && (
+        <button className="btn btn-primary" onClick={onNext} style={{ marginTop: 32, animation: 'fadeSlideUp 0.5s ease' }}>
+          Next Station ➔
+        </button>
+      )}
+    </div>
+  );
+}
+
+function Station4({ audioEnabled, onNext }) {
+  const [done, setDone] = useState(false);
+  const narRef = useRef(null);
+
+  const pattern = [50, 45, 40, 35, 30]; // Descending
+
+  useEffect(() => {
+    if (audioEnabled) {
+      narRef.current = narrate(simulateStation4Intro(), true);
+    }
+    return () => { narRef.current?.cancel(); };
+  }, [audioEnabled]);
+
+  const handleSelect = (isAscending) => {
+    if (done) return;
+    if (!isAscending) {
+      sounds.correct();
+      setDone(true);
+      narRef.current?.cancel();
+      if (audioEnabled) {
+        narRef.current = narrate([
+          celebrate("Correct! The numbers are getting smaller."),
+        ], true);
+      }
+    } else {
+      sounds.wrong();
+    }
+  };
+
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <div className="station-header"><h2>🎢 Up or Down?</h2></div>
+      <p style={{ color: 'var(--text-secondary)', marginBottom: 16 }}>
+        Is this pattern ascending (going up) or descending (going down)?
+      </p>
+
+      <div style={{ fontSize: '2rem', fontFamily: 'var(--font-display)', margin: '32px 0', letterSpacing: 2 }}>
+        {pattern.join(' → ')}
+      </div>
+
+      <div className="options-grid" style={{ marginTop: 32 }}>
+        <button 
+          className={`option-btn`}
+          onClick={() => handleSelect(true)}
+          disabled={done}
+        >
+          📈 Ascending (Up)
+        </button>
+        <button 
+          className={`option-btn ${done ? 'correct' : ''}`}
+          onClick={() => handleSelect(false)}
+          disabled={done}
+        >
+          📉 Descending (Down)
+        </button>
+      </div>
+
+      {done && (
+        <button className="btn btn-primary" onClick={onNext} style={{ marginTop: 32, animation: 'fadeSlideUp 0.5s ease' }}>
+          Next Station ➔
+        </button>
+      )}
+    </div>
+  );
+}
+
+function Station5({ audioEnabled, onNext }) {
+  const [seq, setSeq] = useState([100]);
+  const [done, setDone] = useState(false);
+  const narRef = useRef(null);
+
+  const options = [110, 120, 130, 150];
+  const targetSeq = [100, 110, 120, 130];
+  
+  useEffect(() => {
+    if (audioEnabled) {
+      narRef.current = narrate(simulateStation5Intro(), true);
+    }
+    return () => { narRef.current?.cancel(); };
+  }, [audioEnabled]);
+
+  const handleSelect = (num) => {
+    if (done) return;
+    const nextExpected = targetSeq[seq.length];
+    if (num === nextExpected) {
+      sounds.correct();
+      const newSeq = [...seq, num];
+      setSeq(newSeq);
+      
+      if (newSeq.length === targetSeq.length) {
+        setDone(true);
+        narRef.current?.cancel();
+        if (audioEnabled) {
+          narRef.current = narrate([
+            celebrate("You built a perfect pattern!"),
+            cheer("You are ready to play!")
+          ], true);
+        }
+      }
+    } else {
+      sounds.wrong();
+    }
+  };
+
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <div className="station-header"><h2>🧱 Build It!</h2></div>
+      <p style={{ color: 'var(--text-secondary)', marginBottom: 16 }}>
+        Rule: <strong>+10</strong>. Build the pattern starting from 100!
+      </p>
+
+      <div className="number-grid">
+        {targetSeq.map((_, i) => (
+          <div key={i} className={`grid-cell ${i < seq.length ? (done ? 'correct' : 'known') : 'missing'}`}>
+            {i < seq.length ? seq[i] : '?'}
+          </div>
+        ))}
+      </div>
+
+      {!done && (
+        <div className="options-grid" style={{ marginTop: 32 }}>
+          {options.map(opt => (
+            <button 
+              key={opt}
+              className="option-btn"
+              onClick={() => handleSelect(opt)}
+              disabled={seq.includes(opt)}
+              style={{ opacity: seq.includes(opt) ? 0.3 : 1 }}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {done && (
         <button className="btn btn-green" onClick={onNext} style={{ marginTop: 32, animation: 'fadeSlideUp 0.5s ease' }}>
           Finish Simulation ✨
         </button>
@@ -223,11 +374,12 @@ function Station3({ audioEnabled, onNext }) {
   );
 }
 
+
 export default function SimulatePhase({ onComplete, audioEnabled }) {
   const [station, setStation] = useState(0);
 
   const nextStation = () => {
-    if (station < 2) setStation(s => s + 1);
+    if (station < 4) setStation(s => s + 1);
     else onComplete();
   };
 
@@ -236,7 +388,7 @@ export default function SimulatePhase({ onComplete, audioEnabled }) {
       <div className="station-tabs">
         {STATIONS.map((st, i) => (
           <div key={i} className={`station-tab ${i === station ? 'active' : i < station ? 'completed' : ''}`}>
-            {st.icon} {st.title}
+            {st.icon}
           </div>
         ))}
       </div>
@@ -245,6 +397,8 @@ export default function SimulatePhase({ onComplete, audioEnabled }) {
         {station === 0 && <Station1 audioEnabled={audioEnabled} onNext={nextStation} />}
         {station === 1 && <Station2 audioEnabled={audioEnabled} onNext={nextStation} />}
         {station === 2 && <Station3 audioEnabled={audioEnabled} onNext={nextStation} />}
+        {station === 3 && <Station4 audioEnabled={audioEnabled} onNext={nextStation} />}
+        {station === 4 && <Station5 audioEnabled={audioEnabled} onNext={nextStation} />}
       </div>
     </div>
   );
