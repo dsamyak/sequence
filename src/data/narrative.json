@@ -1,0 +1,36 @@
+{
+  "characters": {
+    "john": "john.png",
+    "sarah": "sarah.png",
+    "mike": "mike.png",
+    "aisha": "aisha.png",
+    "luca": "luca.png"
+  },
+  "districts": [
+    {
+      "id": 1,
+      "name": "The +2 Suburbs",
+      "intro": "Welcome to Numerica! The Scrambler has ruined all the even addresses here. Help us count up by 2s to fix them!"
+    },
+    {
+      "id": 2,
+      "name": "The -5 Marketplace",
+      "intro": "Oh no, the prices are dropping but the signs are missing! We need to count down by 5s to find the missing signs."
+    },
+    {
+      "id": 3,
+      "name": "The Tens Tower",
+      "intro": "The elevator is broken and jumping by 10s! Can you figure out the missing floors?"
+    },
+    {
+      "id": 4,
+      "name": "The Hundreds Highway",
+      "intro": "We are zooming fast! Cars here have license plates counting by 100s. Let's find the patterns."
+    },
+    {
+      "id": 5,
+      "name": "The Thousands Citadel",
+      "intro": "The core of the city! Everything here counts by 1,000s. Fix the master code to defeat The Scrambler!"
+    }
+  ]
+}

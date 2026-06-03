@@ -1,0 +1,22 @@
+{
+  "1": [
+    { "type": "find_missing", "operation": "add", "ruleAmount": 2, "rule": "+2", "sequenceLength": 5, "hint": "Try adding 2 to the previous number!" },
+    { "type": "find_missing", "operation": "subtract", "ruleAmount": 2, "rule": "-2", "sequenceLength": 5, "hint": "Try taking away 2 from the previous number." }
+  ],
+  "2": [
+    { "type": "find_missing", "operation": "add", "ruleAmount": 5, "rule": "+5", "sequenceLength": 5, "hint": "It looks like we are counting up by 5s." },
+    { "type": "find_missing", "operation": "subtract", "ruleAmount": 5, "rule": "-5", "sequenceLength": 5, "hint": "Count down by 5s!" }
+  ],
+  "3": [
+    { "type": "find_missing", "operation": "add", "ruleAmount": 10, "rule": "+10", "sequenceLength": 6, "hint": "Add 10!" },
+    { "type": "find_missing", "operation": "subtract", "ruleAmount": 10, "rule": "-10", "sequenceLength": 6, "hint": "Subtract 10!" }
+  ],
+  "4": [
+    { "type": "find_missing", "operation": "add", "ruleAmount": 100, "rule": "+100", "sequenceLength": 5, "hint": "Add 100 to the previous number." },
+    { "type": "find_missing", "operation": "subtract", "ruleAmount": 100, "rule": "-100", "sequenceLength": 5, "hint": "Subtract 100 from the previous number." }
+  ],
+  "5": [
+    { "type": "find_missing", "operation": "add", "ruleAmount": 1000, "rule": "+1000", "sequenceLength": 5, "hint": "Jump up by 1,000!" },
+    { "type": "find_missing", "operation": "subtract", "ruleAmount": 1000, "rule": "-1000", "sequenceLength": 5, "hint": "Jump down by 1,000!" }
+  ]
+}
