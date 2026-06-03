@@ -206,11 +206,20 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   display: flex; flex-direction: column; align-items: center;
   min-height: 100vh; padding: 100px 24px 60px; gap: 24px; animation: fadeSlideUp 0.5s ease;
 }
-.story-card { max-width: 540px; width: 100%; }
+.story-card {
+  max-width: 800px; width: 100%; display: flex; flex-direction: column;
+}
+.story-image-wrapper { width: 100%; }
 .story-image {
-  width: 100%; height: 360px; object-fit: cover; object-position: center 20%;
+  width: 100%; height: 260px; object-fit: cover; object-position: center 20%;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   display: block;
+}
+@media (min-width: 768px) {
+  .story-card { flex-direction: row; }
+  .story-image-wrapper { width: 45%; flex-shrink: 0; }
+  .story-image { height: 100%; border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+  .story-content { width: 55%; display: flex; flex-direction: column; justify-content: center; }
 }
 .story-image-placeholder {
   width: 100%; height: 240px; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -462,7 +471,9 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   .journey-step-label { display: none !important; } /* Hide labels on tablet/mobile to save space */
   .journey-connector { width: 12px; }
   .wonder-screen, .story-screen, .simulate-screen, .play-screen, .reflect-screen { padding: 80px 16px 40px; }
-  .story-image { height: 260px; }
+  .story-card { flex-direction: column; }
+  .story-image-wrapper { width: 100%; }
+  .story-image { height: 220px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
   .sim-card, .story-card, .wonder-card, .play-hud, .question-card { width: 100%; max-width: 100%; }
 }
 
